@@ -16,7 +16,7 @@ docstring = documentation
 HEIGHT = 16
 WIDTH = 24
 
-
+import pygame
 pygame.init()
 fenetre = pygame.display.set_caption("pavgame")
 window = pygame.display.set_mode((40 * WIDTH, 40 * HEIGHT))
@@ -52,7 +52,7 @@ carte = """.....................................###
 
 
 def charge_image():#decoupe l image en 16 rectangle
-    image = pygame.image.load("ressources/th.png").convert()
+    image = pygame.image.load("ressources/tuiles.png").convert()
     width, height = image.get_size()
     th = []
     for x in range(width//WIDTH):
@@ -60,7 +60,7 @@ def charge_image():#decoupe l image en 16 rectangle
       for y in range(height//HEIGHT):
         rect = (x * WIDTH, y * HEIGHT, WIDTH, HEIGHT)
         ligne.append(image.subsurface(rect))
-        th.append(ligne)
+      th.append(ligne)
     return th
 
 while run:
@@ -74,7 +74,7 @@ while run:
     for i, ligne in enumerate(lignes):  # Ordonnees (lignes)
         for j, caractere in enumerate(ligne):  # Abscisses (colonnes)
             if caractere == '.':
-                window.blit(th[0][4], (WIDTH * j, HEIGHT * i))
+                window.blit(th[0][0], (WIDTH * j, HEIGHT * i))
             if caractere == '#':
                 window.blit(th[0][8], (WIDTH * j, HEIGHT * i))
 
